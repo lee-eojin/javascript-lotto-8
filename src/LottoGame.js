@@ -1,3 +1,5 @@
+import { RANK, MATCH_COUNT } from './constants.js';
+
 class LottoGame {
   #lottos;
   #result;
@@ -23,11 +25,11 @@ class LottoGame {
 
   #initResult() {
     return {
-      FIRST: 0,
-      SECOND: 0,
-      THIRD: 0,
-      FOURTH: 0,
-      FIFTH: 0
+      [RANK.FIRST]: 0,
+      [RANK.SECOND]: 0,
+      [RANK.THIRD]: 0,
+      [RANK.FOURTH]: 0,
+      [RANK.FIFTH]: 0
     };
   }
 
@@ -39,11 +41,11 @@ class LottoGame {
     const correctCount = lotto.getCorrectNumber(targetNumbers);
     const hasBonus = lotto.hasBonusNumber(bonusNumber);
 
-    if (correctCount === 6) return 'FIRST';
-    if (correctCount === 5 && hasBonus) return 'SECOND';
-    if (correctCount === 5) return 'THIRD';
-    if (correctCount === 4) return 'FOURTH';
-    if (correctCount === 3) return 'FIFTH';
+    if (correctCount === MATCH_COUNT.FIRST) return RANK.FIRST;
+    if (correctCount === MATCH_COUNT.SECOND && hasBonus) return RANK.SECOND;
+    if (correctCount === MATCH_COUNT.THIRD) return RANK.THIRD;
+    if (correctCount === MATCH_COUNT.FOURTH) return RANK.FOURTH;
+    if (correctCount === MATCH_COUNT.FIFTH) return RANK.FIFTH;
 
     return null;
   }
