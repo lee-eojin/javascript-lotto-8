@@ -1,12 +1,27 @@
-import { RANK, MATCH_COUNT } from './constants.js';
+import { MissionUtils } from "@woowacourse/mission-utils";
+import { RANK, MATCH_COUNT, LOTTO } from './constants.js';
+import Lotto from './Lotto.js';
 
 class LottoGame {
   #lottos;
   #result;
 
-  constructor(lottos) {
-    this.#lottos = lottos;
+  constructor(amount) {
+    this.#lottos = Array.from({ length: amount }, () => this.#generateLotto());
     this.#result = this.#initResult();
+  }
+
+  #generateLotto() {
+    const numbers = MissionUtils.Random.pickUniqueNumbersInRange(
+      LOTTO.MIN_NUMBER,
+      LOTTO.MAX_NUMBER,
+      LOTTO.COUNT
+    );
+    return new Lotto(numbers);
+  }
+
+  getLottos() {
+    return [...this.#lottos];
   }
 
   calculate(targetNumbers, bonusNumber) {
