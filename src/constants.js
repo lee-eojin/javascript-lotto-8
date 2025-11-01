@@ -31,5 +31,7 @@ export const PRIZE_MONEY = Object.freeze({
 
 export const ERROR_MESSAGE = Object.freeze({
   INVALID_LOTTO_COUNT: '[ERROR] 로또 번호는 6개여야 합니다.',
-  DUPLICATE_LOTTO_NUMBER: '[ERROR] 로또 번호에 중복된 숫자가 있습니다.'
+  DUPLICATE_LOTTO_NUMBER: '[ERROR] 로또 번호에 중복된 숫자가 있습니다.',
+  PRICE_TOO_LOW: '[ERROR] 구입 금액은 1,000원 이상이어야 합니다.',
+  PRICE_NOT_UNIT: '[ERROR] 구입 금액은 1,000원 단위여야 합니다.'
 });
