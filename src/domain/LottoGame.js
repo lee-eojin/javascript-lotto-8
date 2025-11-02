@@ -1,4 +1,4 @@
-import { RANK, MATCH_COUNT } from './constants.js';
+import { RANK, MATCH_COUNT } from '../constants.js';
 
 class LottoGame {
   #lottos;

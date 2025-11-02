@@ -1,4 +1,4 @@
-import { PRIZE_MONEY, RANK } from './constants.js';
+import { PRIZE_MONEY, RANK } from '../constants.js';
 
 class PrizeCalculator {
   #result;
