@@ -2,6 +2,23 @@
 
 간단한 로또 발매기
 
+## 프로젝트 구조
+
+```
+src/
+├── view/
+│   ├── InputView.js
+│   └── OutputView.js
+├── domain/
+│   ├── Lotto.js
+│   ├── LottoGame.js
+│   ├── LottoGenerator.js
+│   └── PrizeCalculator.js
+├── constants.js
+├── App.js
+└── index.js
+```
+
 ## 기능 목록
 
 ### 입력
