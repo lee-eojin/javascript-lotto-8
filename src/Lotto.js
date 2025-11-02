@@ -1,21 +1,23 @@
 import { LOTTO, ERROR_MESSAGE } from './constants.js';
 
 class Lotto {
+  #numbers;
+
   constructor(numbers) {
     this.#validate(numbers);
-    this.numbers = numbers;
+    this.#numbers = numbers;
   }
 
   getLottoNumber() {
-    return this.numbers;
+    return this.#numbers;
   }
 
   getCorrectNumber(targetNumbers) {
-    return this.numbers.filter(number => targetNumbers.includes(number)).length;
+    return this.#numbers.filter(number => targetNumbers.includes(number)).length;
   }
 
   hasBonusNumber(bonusNumber) {
-    return this.numbers.includes(bonusNumber);
+    return this.#numbers.includes(bonusNumber);
   }
 
   #validate(numbers) {
