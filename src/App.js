@@ -27,8 +27,7 @@ class App {
       game.calculate(targetNumbers, bonusNumber);
       const result = game.getGameResult();
 
-      const calculator = new PrizeCalculator(result, price);
-      const earningRate = calculator.getEarningRate();
+      const earningRate = PrizeCalculator.getEarningRate(result, price);
       outputView.printResult(result, earningRate);
     } catch (error) {
       MissionUtils.Console.print(error.message);
