@@ -2,7 +2,7 @@ import { MissionUtils } from '@woowacourse/mission-utils';
 import LottoGenerator from './domain/LottoGenerator.js';
 import LottoGame from './domain/LottoGame.js';
 import PrizeCalculator from './domain/PrizeCalculator.js';
-import InputValidator from './domain/InputValidator.js';
+import WinningNumberValidator from './domain/WinningNumberValidator.js';
 import InputView from './view/InputView.js';
 import OutputView from './view/OutputView.js';
 
@@ -20,8 +20,8 @@ class App {
       const targetNumbers = await inputView.readTargetNumbers();
       const bonusNumber = await inputView.readBonusNumber();
 
-      InputValidator.validateTargetNumbers(targetNumbers);
-      InputValidator.validateBonusNumber(bonusNumber, targetNumbers);
+      WinningNumberValidator.validateTargetNumbers(targetNumbers);
+      WinningNumberValidator.validateBonusNumber(bonusNumber, targetNumbers);
 
       const game = new LottoGame(lottos);
       game.calculate(targetNumbers, bonusNumber);

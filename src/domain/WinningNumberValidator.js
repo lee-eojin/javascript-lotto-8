@@ -1,6 +1,6 @@
 import { LOTTO, ERROR_MESSAGE } from '../constants.js';
 
-class InputValidator {
+class WinningNumberValidator {
   static validateTargetNumbers(numbers) {
     this.#validateNumberFormat(numbers);
     this.#validateTargetCount(numbers);
@@ -58,4 +58,4 @@ class InputValidator {
   }
 }
 
-export default InputValidator;
+export default WinningNumberValidator;

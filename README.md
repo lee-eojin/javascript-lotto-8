@@ -6,14 +6,15 @@
 
 ```
 src/
+├── domain/
+│   ├── Lotto.js
+│   ├── LottoGenerator.js
+│   ├── LottoGame.js
+│   ├── PrizeCalculator.js
+│   └── WinningNumberValidator.js
 ├── view/
 │   ├── InputView.js
 │   └── OutputView.js
-├── domain/
-│   ├── Lotto.js
-│   ├── LottoGame.js
-│   ├── LottoGenerator.js
-│   └── PrizeCalculator.js
 ├── constants.js
 ├── App.js
 └── index.js
