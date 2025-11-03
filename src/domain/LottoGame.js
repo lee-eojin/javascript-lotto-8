@@ -1,4 +1,4 @@
-import { RANK, MATCH_COUNT, LOTTO, ERROR_MESSAGE } from '../constants.js';
+import { RANK, MATCH_COUNT } from '../constants.js';
 
 class LottoGame {
   #lottos;
@@ -9,10 +9,10 @@ class LottoGame {
     this.#result = this.#initResult();
   }
 
-  calculate(targetNumbers, bonusNumber) {
+  calculate(winningNumbers) {
     this.#resetResult();
     this.#lottos.forEach(lotto => {
-      const rank = this.#getRank(lotto, targetNumbers, bonusNumber);
+      const rank = this.#getRank(lotto, winningNumbers);
       if (rank) {
         this.#result[rank]++;
       }
@@ -37,9 +37,9 @@ class LottoGame {
     this.#result = this.#initResult();
   }
 
-  #getRank(lotto, targetNumbers, bonusNumber) {
-    const correctCount = lotto.getCorrectNumber(targetNumbers);
-    const hasBonus = lotto.hasBonusNumber(bonusNumber);
+  #getRank(lotto, winningNumbers) {
+    const correctCount = lotto.getCorrectNumber(winningNumbers.getTargetNumbers());
+    const hasBonus = lotto.hasBonusNumber(winningNumbers.getBonusNumber());
 
     if (correctCount === MATCH_COUNT.FIRST) return RANK.FIRST;
     if (correctCount === MATCH_COUNT.SECOND && hasBonus) return RANK.SECOND;
