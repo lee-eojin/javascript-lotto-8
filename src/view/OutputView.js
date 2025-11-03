@@ -29,11 +29,10 @@ class OutputView {
   }
 
   #printRankResults(result) {
-    MissionUtils.Console.print(`${OUTPUT_MESSAGE.MATCH_RESULT.FIFTH} - ${result.FIFTH}개`);
-    MissionUtils.Console.print(`${OUTPUT_MESSAGE.MATCH_RESULT.FOURTH} - ${result.FOURTH}개`);
-    MissionUtils.Console.print(`${OUTPUT_MESSAGE.MATCH_RESULT.THIRD} - ${result.THIRD}개`);
-    MissionUtils.Console.print(`${OUTPUT_MESSAGE.MATCH_RESULT.SECOND} - ${result.SECOND}개`);
-    MissionUtils.Console.print(`${OUTPUT_MESSAGE.MATCH_RESULT.FIRST} - ${result.FIRST}개`);
+    const ranks = ['FIFTH', 'FOURTH', 'THIRD', 'SECOND', 'FIRST'];
+    ranks.forEach(rank => {
+      MissionUtils.Console.print(`${OUTPUT_MESSAGE.MATCH_RESULT[rank]} - ${result[rank]}개`);
+    });
   }
 
   #printEarningRate(earningRate) {

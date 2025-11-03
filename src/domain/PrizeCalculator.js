@@ -2,15 +2,9 @@ import { PRIZE_MONEY, RANK } from '../constants.js';
 
 class PrizeCalculator {
   static getWinMoney(result) {
-    let totalWinMoney = 0;
-
-    totalWinMoney += result[RANK.FIRST] * PRIZE_MONEY.FIRST;
-    totalWinMoney += result[RANK.SECOND] * PRIZE_MONEY.SECOND;
-    totalWinMoney += result[RANK.THIRD] * PRIZE_MONEY.THIRD;
-    totalWinMoney += result[RANK.FOURTH] * PRIZE_MONEY.FOURTH;
-    totalWinMoney += result[RANK.FIFTH] * PRIZE_MONEY.FIFTH;
-
-    return totalWinMoney;
+    return Object.values(RANK).reduce((total, rank) => {
+      return total + result[rank] * PRIZE_MONEY[rank];
+    }, 0);
   }
 
   static getEarningRate(result, purchaseAmount) {
