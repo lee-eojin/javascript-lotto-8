@@ -109,31 +109,14 @@ src/
 
 ## 처리 로직
 
-  프로그램 실행의 시작점인 index.js에서 App 인스턴스를 생성하고 run()을 호출한다.
+프로그램은 index.js에서 App 인스턴스를 생성하고 run()을 호출하며 시작됩니다. App.run()은 InputView.readPrice()를 통해 구입 금액을 입력받습니다. 입력값은 빈 값 여부를 검증한 후 숫자 형식인지 확인합니다. 검증된 구입 금액은 LottoGenerator.generate(price)로 전달됩니다.
 
-  App.run()은 InputView.readPrice()를 통해 구입 금액을 입력받는다.
-  입력을 받고, 빈 값을 검증한 후 숫자 형식인지 확인한다.
+이때 1,000원 이상인지, 1,000원 단위인지 다시 검증한 후, 금액을 1,000으로 나눈 개수만큼 generateLotto()를 반복 호출합니다. generateLotto()는 Random.pickUniqueNumbersInRange(1, 45, 6)로 6개의 고유 숫자를 생성하고, 이를 기반으로 Lotto 객체를 생성합니다. Lotto는 생성 시 6개 숫자인지, 중복이 없는지, 1~45 범위 내인지 검증한 후, 유효한 경우에만 번호를 private 필드에 저장합니다.
 
-  검증된 구입 금액은 LottoGenerator.generate(price)로 전달된다. 
-  1,000원 이상인지, 1,000원 단위인지 검증한다. 검증 후 price를 1,000으로 나눈 개수만큼 generateLotto()를 반복 호출한다.
+생성된 로또 목록은 OutputView.printLottos(lottos)로 출력됩니다. 먼저 구매 개수를 출력하고, 각 로또를 순회하며 번호를 가져와 join(', ')으로 연결한 뒤 대괄호로 감싸 출력합니다.
 
-  generateLotto()는 Random.pickUniqueNumbersInRange(1, 45, 6)로 숫자를 생성하고 Lotto 객체를 생성한다. 
-  Lotto는 6개인지, 중복이 없는지, 1~45 범위인지 검증한다.
-  검증 후 numbers를 private 필드에 저장한다.
+이후 App은 InputView.readTargetNumbers()를 호출해 당첨 번호를 입력받고, readBonusNumber()로 보너스 번호를 입력받아 Number()로 변환합니다. 당첨 번호 배열과 보너스 번호는 WinningNumbers 생성자로 전달되어 하나의 객체로 캡슐화됩니다.
 
-  생성된 로또 목록은 OutputView.printLottos(lottos)로 출력된다.
-  구매 개수를 출력하고, 각 로또를 순회하며 번호를 가져와 join(', ')으로 연결하여 대괄호로 감싸서 출력한다.
+발행된 로또 목록과 WinningNumbers 객체는 LottoGame에 전달됩니다. LottoGame.calculate(winningNumbers)는 각 로또를 순회하며 getRank()를 호출합니다. getRank()는 lotto.getCorrectNumber()로 당첨 번호와 일치하는 개수를 계산하고, lotto.hasBonusNumber()로 보너스 번호 포함 여부를 확인해 등수를 결정합니다.
 
-  App은 InputView.readTargetNumbers()를 호출하여 당첨 번호를 입력받는다.
-  readBonusNumber()로 보너스 번호를 입력받고 Number()로 변환한다.
-
-  당첨 번호 배열과 보너스 번호는 WinningNumbers 생성자로 전달된다.
-
-  생성된 로또 목록과 WinningNumbers 객체는 LottoGame에 전달된다.
-  LottoGame.calculate(winningNumbers)는 각 로또를 순회하며 getRank()를
-  호출한다. getRank()는 lotto.getCorrectNumber()로 당첨 번호와 일치하는
-  개수를 계산하고, lotto.hasBonusNumber()로 보너스 번호 포함 여부를 확인한다.
-
-  당첨 결과는 PrizeCalculator.getWinMoney(result)로 전달된다.
-
-  최종 결과는 OutputView.printResult(result, earningRate)로 출력된다.
+당첨 결과는 PrizeCalculator.getWinMoney(result)로 총 당첨금을 계산한 후, 최종 결과와 수익률을 OutputView.printResult(result, earningRate)로 출력하며 마무리됩니다.
