@@ -106,3 +106,34 @@ src/
 6개 일치 (2,000,000,000원) - 0개
 총 수익률은 62.5%입니다.
 ```
+
+## 처리 로직
+
+  프로그램 실행의 시작점인 index.js에서 App 인스턴스를 생성하고 run()을 호출한다.
+
+  App.run()은 InputView.readPrice()를 통해 구입 금액을 입력받는다.
+  입력을 받고, 빈 값을 검증한 후 숫자 형식인지 확인한다.
+
+  검증된 구입 금액은 LottoGenerator.generate(price)로 전달된다. 
+  1,000원 이상인지, 1,000원 단위인지 검증한다. 검증 후 price를 1,000으로 나눈 개수만큼 generateLotto()를 반복 호출한다.
+
+  generateLotto()는 Random.pickUniqueNumbersInRange(1, 45, 6)로 숫자를 생성하고 Lotto 객체를 생성한다. 
+  Lotto는 6개인지, 중복이 없는지, 1~45 범위인지 검증한다.
+  검증 후 numbers를 private 필드에 저장한다.
+
+  생성된 로또 목록은 OutputView.printLottos(lottos)로 출력된다.
+  구매 개수를 출력하고, 각 로또를 순회하며 번호를 가져와 join(', ')으로 연결하여 대괄호로 감싸서 출력한다.
+
+  App은 InputView.readTargetNumbers()를 호출하여 당첨 번호를 입력받는다.
+  readBonusNumber()로 보너스 번호를 입력받고 Number()로 변환한다.
+
+  당첨 번호 배열과 보너스 번호는 WinningNumbers 생성자로 전달된다.
+
+  생성된 로또 목록과 WinningNumbers 객체는 LottoGame에 전달된다.
+  LottoGame.calculate(winningNumbers)는 각 로또를 순회하며 getRank()를
+  호출한다. getRank()는 lotto.getCorrectNumber()로 당첨 번호와 일치하는
+  개수를 계산하고, lotto.hasBonusNumber()로 보너스 번호 포함 여부를 확인한다.
+
+  당첨 결과는 PrizeCalculator.getWinMoney(result)로 전달된다.
+
+  최종 결과는 OutputView.printResult(result, earningRate)로 출력된다.
