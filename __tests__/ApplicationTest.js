@@ -94,4 +94,64 @@ describe("로또 테스트", () => {
   test("예외 테스트", async () => {
     await runException("1000j");
   });
+
+  test("1등 - 6개 일치", async () => {
+    const logSpy = getLogSpy();
+
+    mockRandoms([[1, 2, 3, 4, 5, 6]]);
+    mockQuestions(["1000", "1,2,3,4,5,6", "7"]);
+
+    const app = new App();
+    await app.run();
+
+    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining("6개 일치 (2,000,000,000원) - 1개"));
+  });
+
+  test("2등 - 5개 일치 + 보너스 일치", async () => {
+    const logSpy = getLogSpy();
+
+    mockRandoms([[1, 2, 3, 4, 5, 7]]);
+    mockQuestions(["1000", "1,2,3,4,5,6", "7"]);
+
+    const app = new App();
+    await app.run();
+
+    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining("5개 일치, 보너스 볼 일치 (30,000,000원) - 1개"));
+  });
+
+  test("3등 - 5개 일치", async () => {
+    const logSpy = getLogSpy();
+
+    mockRandoms([[1, 2, 3, 4, 5, 8]]);
+    mockQuestions(["1000", "1,2,3,4,5,6", "7"]);
+
+    const app = new App();
+    await app.run();
+
+    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining("5개 일치 (1,500,000원) - 1개"));
+  });
+
+  test("4등 - 4개 일치", async () => {
+    const logSpy = getLogSpy();
+
+    mockRandoms([[1, 2, 3, 4, 8, 9]]);
+    mockQuestions(["1000", "1,2,3,4,5,6", "7"]);
+
+    const app = new App();
+    await app.run();
+
+    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining("4개 일치 (50,000원) - 1개"));
+  });
+
+  test("5등 - 3개 일치", async () => {
+    const logSpy = getLogSpy();
+
+    mockRandoms([[1, 2, 3, 8, 9, 10]]);
+    mockQuestions(["1000", "1,2,3,4,5,6", "7"]);
+
+    const app = new App();
+    await app.run();
+
+    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining("3개 일치 (5,000원) - 1개"));
+  });
 });
