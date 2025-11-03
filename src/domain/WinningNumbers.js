@@ -20,10 +20,10 @@ class WinningNumbers {
   }
 
   #validateTargetNumbers(numbers) {
-    this.#validateNumbersFormat(numbers);
-    this.#validateCount(numbers);
-    this.#validateRange(numbers);
-    this.#validateDuplicate(numbers, ERROR_MESSAGE.DUPLICATE_TARGET_NUMBER);
+    this.#validateTargetNumbersFormat(numbers);
+    this.#validateTargetNumbersCount(numbers);
+    this.#validateTargetNumbersRange(numbers);
+    this.#validateTargetNumbersDuplicate(numbers);
   }
 
   #validateBonusNumber(number, targetNumbers) {
@@ -32,7 +32,7 @@ class WinningNumbers {
     this.#validateBonusDuplicate(number, targetNumbers);
   }
 
-  #validateNumbersFormat(numbers) {
+  #validateTargetNumbersFormat(numbers) {
     if (numbers.some(num => isNaN(num))) {
       throw new Error(ERROR_MESSAGE.INVALID_NUMBER_FORMAT);
     }
@@ -41,22 +41,22 @@ class WinningNumbers {
     }
   }
 
-  #validateCount(numbers) {
+  #validateTargetNumbersCount(numbers) {
     if (numbers.length !== LOTTO.COUNT) {
       throw new Error(ERROR_MESSAGE.INVALID_TARGET_COUNT);
     }
   }
 
-  #validateRange(numbers) {
+  #validateTargetNumbersRange(numbers) {
     const inRange = numbers.every(num => num >= LOTTO.MIN_NUMBER && num <= LOTTO.MAX_NUMBER);
     if (!inRange) {
       throw new Error(ERROR_MESSAGE.INVALID_NUMBER_RANGE);
     }
   }
 
-  #validateDuplicate(numbers, errorMessage) {
+  #validateTargetNumbersDuplicate(numbers) {
     if (new Set(numbers).size !== numbers.length) {
-      throw new Error(errorMessage);
+      throw new Error(ERROR_MESSAGE.DUPLICATE_TARGET_NUMBER);
     }
   }
 
