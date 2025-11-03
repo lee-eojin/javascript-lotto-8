@@ -17,7 +17,7 @@ class Lotto {
   }
 
   hasBonusNumber(bonusNumber) {
-    return this.#numbers.some(number => bonusNumber.equals(number));
+    return this.#numbers.includes(bonusNumber);
   }
 
   #validate(numbers) {
