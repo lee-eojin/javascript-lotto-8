@@ -29,7 +29,7 @@ class InputView {
 
   #validateEmptyInput(input) {
     if (input.trim() === '') {
-      throw new Error(ERROR_MESSAGE.INVALID_PRICE_FORMAT);
+      throw new Error(ERROR_MESSAGE.INVALID_INPUT);
     }
   }
 }

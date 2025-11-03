@@ -5,8 +5,7 @@ import Lotto from './Lotto.js';
 class LottoGenerator {
   generate(price) {
     this.#validatePrice(price);
-    const count = price / LOTTO.PRICE;
-    return this.#generateLottos(count);
+    return this.#generateLottos(price / LOTTO.PRICE);
   }
 
   #validatePrice(price) {

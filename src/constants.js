@@ -49,6 +49,7 @@ export const OUTPUT_MESSAGE = Object.freeze({
 });
 
 export const ERROR_MESSAGE = Object.freeze({
+  INVALID_INPUT: '[ERROR] 입력값이 비어있습니다.',
   INVALID_PRICE_FORMAT: '[ERROR] 구입 금액은 숫자여야 합니다.',
   PRICE_TOO_LOW: '[ERROR] 구입 금액은 1,000원 이상이어야 합니다.',
   PRICE_NOT_UNIT: '[ERROR] 구입 금액은 1,000원 단위여야 합니다.',
