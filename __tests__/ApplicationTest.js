@@ -91,8 +91,16 @@ describe("로또 테스트", () => {
     });
   });
 
-  test("예외 테스트", async () => {
+  test("예외 테스트 - 구입 금액에 문자 포함", async () => {
     await runException("1000j");
+  });
+
+  test("예외 테스트 - 구입 금액이 1000원 미만", async () => {
+    await runException("500");
+  });
+
+  test("예외 테스트 - 구입 금액이 1000원 단위가 아님", async () => {
+    await runException("1500");
   });
 
   test("1등 - 6개 일치", async () => {
