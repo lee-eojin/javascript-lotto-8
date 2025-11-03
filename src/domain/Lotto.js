@@ -23,6 +23,7 @@ class Lotto {
   #validate(numbers) {
     this.#validateLength(numbers);
     this.#validateDuplicate(numbers);
+    this.#validateRange(numbers);
   }
 
   #validateLength(numbers) {
@@ -34,6 +35,13 @@ class Lotto {
   #validateDuplicate(numbers) {
     if (new Set(numbers).size !== numbers.length) {
       throw new Error(ERROR_MESSAGE.DUPLICATE_LOTTO_NUMBER);
+    }
+  }
+
+  #validateRange(numbers) {
+    const inRange = numbers.every(num => num >= LOTTO.MIN_NUMBER && num <= LOTTO.MAX_NUMBER);
+    if (!inRange) {
+      throw new Error(ERROR_MESSAGE.INVALID_NUMBER_RANGE);
     }
   }
 }
