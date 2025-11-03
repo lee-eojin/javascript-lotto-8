@@ -10,16 +10,25 @@ class InputView {
 
   async readTargetNumbers() {
     const input = await MissionUtils.Console.readLineAsync(INPUT_MESSAGE.TARGET_NUMBERS);
+    this.#validateEmptyInput(input);
     return input.split(',').map(num => Number(num.trim()));
   }
 
   async readBonusNumber() {
     const input = await MissionUtils.Console.readLineAsync(INPUT_MESSAGE.BONUS_NUMBER);
+    this.#validateEmptyInput(input);
     return Number(input);
   }
 
   #validatePriceFormat(input) {
-    if (isNaN(input) || input.trim() === '') {
+    this.#validateEmptyInput(input);
+    if (isNaN(input)) {
+      throw new Error(ERROR_MESSAGE.INVALID_PRICE_FORMAT);
+    }
+  }
+
+  #validateEmptyInput(input) {
+    if (input.trim() === '') {
       throw new Error(ERROR_MESSAGE.INVALID_PRICE_FORMAT);
     }
   }

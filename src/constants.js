@@ -49,14 +49,16 @@ export const OUTPUT_MESSAGE = Object.freeze({
 });
 
 export const ERROR_MESSAGE = Object.freeze({
-  INVALID_LOTTO_COUNT: '[ERROR] 로또 번호는 6개여야 합니다.',
-  DUPLICATE_LOTTO_NUMBER: '[ERROR] 로또 번호에 중복된 숫자가 있습니다.',
+  INVALID_PRICE_FORMAT: '[ERROR] 구입 금액은 숫자여야 합니다.',
   PRICE_TOO_LOW: '[ERROR] 구입 금액은 1,000원 이상이어야 합니다.',
   PRICE_NOT_UNIT: '[ERROR] 구입 금액은 1,000원 단위여야 합니다.',
-  INVALID_PRICE_FORMAT: '[ERROR] 구입 금액은 숫자여야 합니다.',
+  INVALID_LOTTO_COUNT: '[ERROR] 로또 번호는 6개여야 합니다.',
+  DUPLICATE_LOTTO_NUMBER: '[ERROR] 로또 번호에 중복된 숫자가 있습니다.',
+  INVALID_NUMBER_FORMAT: '[ERROR] 로또 번호는 숫자여야 합니다.',
+  INVALID_NUMBER_INTEGER: '[ERROR] 로또 번호는 정수여야 합니다.',
   INVALID_NUMBER_RANGE: '[ERROR] 로또 번호는 1부터 45 사이의 숫자여야 합니다.',
-  DUPLICATE_TARGET_NUMBER: '[ERROR] 당첨 번호에 중복된 숫자가 있습니다.',
-  DUPLICATE_BONUS_NUMBER: '[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.',
   INVALID_TARGET_COUNT: '[ERROR] 당첨 번호는 6개여야 합니다.',
-  INVALID_NUMBER_FORMAT: '[ERROR] 로또 번호는 숫자여야 합니다.'
+  DUPLICATE_TARGET_NUMBER: '[ERROR] 당첨 번호에 중복된 숫자가 있습니다.',
+  INVALID_BONUS_FORMAT: '[ERROR] 보너스 번호는 숫자여야 합니다.',
+  DUPLICATE_BONUS_NUMBER: '[ERROR] 보너스 번호는 당첨 번호와 중복될 수 없습니다.'
 });

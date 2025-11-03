@@ -36,6 +36,9 @@ class WinningNumbers {
     if (numbers.some(num => isNaN(num))) {
       throw new Error(ERROR_MESSAGE.INVALID_NUMBER_FORMAT);
     }
+    if (numbers.some(num => !Number.isInteger(num))) {
+      throw new Error(ERROR_MESSAGE.INVALID_NUMBER_INTEGER);
+    }
   }
 
   #validateTargetCount(numbers) {
@@ -59,7 +62,10 @@ class WinningNumbers {
 
   #validateSingleNumberFormat(number) {
     if (isNaN(number)) {
-      throw new Error(ERROR_MESSAGE.INVALID_NUMBER_FORMAT);
+      throw new Error(ERROR_MESSAGE.INVALID_BONUS_FORMAT);
+    }
+    if (!Number.isInteger(number)) {
+      throw new Error(ERROR_MESSAGE.INVALID_NUMBER_INTEGER);
     }
   }
 
